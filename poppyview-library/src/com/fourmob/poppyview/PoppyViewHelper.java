@@ -74,6 +74,18 @@ public class PoppyViewHelper {
 		initPoppyViewOnListView(listView, onScrollListener);
 		return mPoppyView;
 	}
+	
+	public View createPoppyViewOnListView(ListView listView, int poppyViewResId, OnScrollListener onScrollListener) {
+		if(listView.getHeaderViewsCount() != 0) {
+			throw new IllegalArgumentException("use createPoppyViewOnListView with headerResId parameter");
+		}
+		if(listView.getFooterViewsCount() != 0) {
+			throw new IllegalArgumentException("poppyview library doesn't support listview with footer");
+		}
+		mPoppyView = mLayoutInflater.inflate(poppyViewResId, null);
+		initPoppyViewOnListView(listView, onScrollListener);
+		return mPoppyView;
+	}
 
 	public View createPoppyViewOnListView(int listViewId, int poppyViewResId) {
 		return createPoppyViewOnListView(listViewId, poppyViewResId, null);
