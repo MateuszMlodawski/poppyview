@@ -39,6 +39,8 @@ public class PoppyViewHelper {
 	private int mPoppyViewHeight = - 1;
 
 	private PoppyViewPosition mPoppyViewPosition;
+	
+	private int mLastListViewVisibleItem = 0;
 
 	public PoppyViewHelper(Activity activity, PoppyViewPosition position) {
 		mActivity = activity;
@@ -190,9 +192,13 @@ public class PoppyViewHelper {
 					newScrollPosition = - topChild.getTop() + view.getFirstVisiblePosition() * topChild.getHeight();
 				}
 
-				if(Math.abs(newScrollPosition - mScrollPosition) >= SCROLL_DIRECTION_CHANGE_THRESHOLD) {
-					onScrollPositionChanged(mScrollPosition, newScrollPosition);
+				if (!(firstVisibleItem == mLastListViewVisibleItem)) {
+					if(Math.abs(newScrollPosition - mScrollPosition) >= SCROLL_DIRECTION_CHANGE_THRESHOLD) {
+						onScrollPositionChanged(mScrollPosition, newScrollPosition);
+					}
 				}
+				
+				mLastListViewVisibleItem = firstVisibleItem;
 
 				mScrollPosition = newScrollPosition;
 			}
