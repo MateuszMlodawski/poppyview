@@ -92,6 +92,10 @@ public class PoppyViewHelper {
 	public View createPoppyViewOnListView(int listViewId, int poppyViewResId) {
 		return createPoppyViewOnListView(listViewId, poppyViewResId, null);
 	}
+	
+	public View createPoppyViewOnListView(ListView listView, int poppyViewResId) {
+		return createPoppyViewOnListView(listView, poppyViewResId, null);
+	}
 
 
 	// common
